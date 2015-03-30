@@ -9,9 +9,9 @@ We've got to watch out for collisions - multiple keys with the same bucket index
 ## Closed Hashing
 Three states: Empty, Zombie, Active.
 
-For insert, if the bucket index given is full, go to the next bucket until an empty or zombie bucket is found. 
-For lookups, go to the bucket index given, go to the next until you find the stuff you're looking for, or an empty slot (it's not there).
-For deletes, mark the bucket as a zombie (inserts can overwrite it). 
+* For insert, if the bucket index given is full, go to the next bucket until an empty or zombie bucket is found. 
+* For lookups, go to the bucket index given, go to the next until you find the stuff you're looking for, or an empty slot (it's not there).
+* For deletes, mark the bucket as a zombie (inserts can overwrite it). 
 
 **Issues with this**
 * As it gets more full, operations approach O(N) time. 

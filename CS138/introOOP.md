@@ -46,6 +46,7 @@ void Balloon::speak(){
 Having `this->` isn't always required - in cases where the member variable and the argument have the same name, use `this->`.
 
 Inside methods, the compiler looks up variables in this order:
+
 1. Is there a local variable? eg. `string colour = "blue";`
 2. Is it a parameter? 
 3. Is it a member variable?
@@ -89,9 +90,9 @@ ClassName::ClassName(string part1, string part2): part1(part1), part2(part2){}
 
 ### Copy Constructors
 A constructor that takes a `const` reference to an object of the same class, and creates a copy as a new object.
-
-`ClassName::ClassName(const ClassName object); // Declaration`
-
+```C++
+ClassName::ClassName(const ClassName object); // Declaration
+```
 One is automatically defined for you.
 
 **Rule of Three*

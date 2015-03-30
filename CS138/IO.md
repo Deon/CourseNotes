@@ -1,10 +1,10 @@
 Input/Output & Intro to C++
 ============
 ## Standard IO
-`#include <iostream>` - The iostream library
-`cout << stuff << endl` - Output to standard output, with a new line at the end. 
-`cin >> var` - Input from standard input to some variable `var`. 
-`cerr << errorMessage` - Use this for errors. 
+* `#include <iostream>` - The iostream library
+* `cout << stuff << endl` - Output to standard output, with a new line at the end. 
+* `cin >> var` - Input from standard input to some variable `var`. 
+* `cerr << errorMessage` - Use this for errors. 
 
 To check if you've gone past the end of a line:
 
@@ -56,7 +56,9 @@ int *q, r;
 // q is a pointer, r is not...
 ```
 **Reference Parameters**
+
 Kinda like pointers - any changes to the parameters inside the function modify the original, but you don't need to dereference them.
+
 Generally good to save memory, as the compiler doesn't need to allocate more memory. 
 
 ```C++
@@ -84,10 +86,12 @@ A[i] == A + i == i + A == i[A] // Addition is commutative...
 
 ### Vectors
 These are dynamic - a bit less efficient as a result.
+
 Vectors can only store elements of one type.
 
 To use them:
 `#include <vector>`
+
 Using vectors:
 ```C++
 vector <string> monthName(12); // Declared with size 12.
