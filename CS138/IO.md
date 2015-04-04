@@ -32,7 +32,9 @@ while (getLine(cin, temp)){ // Sends input from cin (until next \n) to temp
 ```
 ### File Input
 `#include <fstream>` - Library for file IO
+
 File names have to be `char*`s. 
+
 To convert:
 `myString.c_str()` 
 
@@ -41,10 +43,22 @@ To convert:
 ifstream in1("in1.txt"); 
 ifstream in2;
 in2.open("in2.txt");
+string fileName = "in3.txt";
+ifstream in3 (fileName.c_str());
 ofstream out ("passes.txt");
+
+// Exits if "in2.txt" doesn't exist.
+if (!in2){
+    cerr << "File not found!" << endl;
+    return 0;
+}
+
 // Do stuff
+
+// Close IO streams.
 in1.close();
 in2.close();
+in3.close();
 out.close();
 ```
 You can open/close seperate files using the same input/output stream.
@@ -55,6 +69,9 @@ A c++ trick:
 int *q, r;
 // q is a pointer, r is not...
 ```
+
+When pointers are created, they get garbage - set them to `NULL` to avoid this.
+
 **Reference Parameters**
 
 Kinda like pointers - any changes to the parameters inside the function modify the original, but you don't need to dereference them.
@@ -77,6 +94,7 @@ void doSomethingElse(int &x, const int &y){
 We're not going to use these too often.
 Size is static.
 These are basically pointers.
+Size **must** be declared at compile-time.
 
 ```C++
 int A[15]; // Array of ints, size 15.
@@ -112,4 +130,28 @@ myVector.push_back(someString); // Push operation
 myVector.pop_back(); // Pops the top element of myVector.
 myVector.back(); //Returns the top element of myVector.
 ```
-All functions for vectors are O(1) time, except .push_back() which is ACT, as sometimes the vector capacity needs to be doubled and the elements copied over. 
+All functions for vectors are O(1) time, except `.push_back()` which is ACT, as sometimes the vector capacity needs to be doubled and the elements copied over. 
+
+### Dynamic arrays.
+* Stored on the heap
+* Size can be a run-time value
+* Must `delete` when done with it.
+* Extent (size) is usually stored at index -1.
+* Basis for `vector`
+
+```C++
+string* alloc (int n){
+    assert(n > 0);
+    return new string[n];
+}
+
+int main (){
+    int N;
+    cin >> N;
+    int* a = new int[N];
+    string* B = alloc(N);
+    // do stuff
+    delete [] A;
+    delete [] B;
+}
+```

@@ -15,15 +15,14 @@ Three states: Empty, Zombie, Active.
 
 **Issues with this**
 * As it gets more full, operations approach O(N) time. 
-    * < 80% full is still "reasonable efficient"
+    * < 80% full is still "reasonably efficient"
     
 ## Open Hashing with Chaining
 * Uses a list of lists. 
 * Each bucket holds a pointer to a list rather than an element.
 * Simply append/remove items to the linked list as you would typically. 
 
-Usually:
-` vector<Node*> HashTable;`
+Usually: ` vector<Node*> HashTable;`
 
 ## A bit more on hashing
 * We **do not** need unique keys.

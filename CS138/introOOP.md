@@ -95,7 +95,7 @@ ClassName::ClassName(const ClassName object); // Declaration
 ```
 One is automatically defined for you.
 
-**Rule of Three*
+**Rule of Three**
 If you override any of:
 * Destructor
 * Copy constructor
