@@ -86,6 +86,14 @@ void doSomething (int &x, int &y){
 void doSomethingElse(int &x, const int &y){
     // Do some other stuff, but you can't change y.
 }
+
+string val = "whatever";
+string& val2 = val; // Abstraction of a pointer - you'll get what the pointer's pointing to back directly.
+
+// Know the differences in the implementations / usability of each of these. 
+swap (int x, int y);
+swap (int* x, int* y);
+swap (int& x, int& y);
 ```
 
 ## Basic File Structures 

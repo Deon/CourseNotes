@@ -3,6 +3,24 @@ Intro to OOP
 A reminder: struct members are default **public**, class members are default **private**.
 OOP focuses a lot on design - but that's saved for later classes.
 
+**Programming Styles**
+
+Procedural vs. Object Based vs. Object Oriented
+
+* Procedural
+    * Variables created in main and passed as parameters. 
+    * We use structs and manipulate them using functions.
+* Object Based Programming (Classes + instances)
+    * Classes/structs have subparts and procedures (methods) that work with the subparts (fields/member variables)
+    * Each object is an instance of the class/struct.
+        * Objects can have subparts that are objects / pointers to objects
+* Object Oriented Programming (Classes + Inheritance/Polymorphism + Generics)
+    * Classes extend other classes (inheritance)
+    * Some classes never have instances (abstract base classes [ABCs])
+    * Treat instances of related classes uniformly (Polymorphism)
+    * Parameterize some classes by type (generics)
+    
+    
 **Access Rights**
 * public - Anyone can access this stuff - don't put variables here.
 * protected - instances of this class and its children can access these.
@@ -107,6 +125,7 @@ you should probably override all three.
 * Usually there's not much to be done here - just free up dynamically allocated memory (delete).
 * The parent destructor is called by default.
 * Usually declared as `virtual`. 
+    * Not necessary if there are no child classes, but it's best to leave it as `virtual`.
 * These are called implicitly:
     * A object's scope is exited (stack frame is removed)
     * `delete` is called on the instance.

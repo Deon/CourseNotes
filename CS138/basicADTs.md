@@ -92,6 +92,23 @@ void remove (Node* head, string val){
     delete temp;
 }
 ```
+
+### Reversing a Linked List
+* This can be done in place, no extra memory is required.
+
+```C++
+void reverse (Node*& first){
+    Node* prev = NULL;
+    while (first != NULL){
+        Node* temp = first->next;
+        first->next = prev;
+        prev = first;
+        first = temp;
+    }
+    first=prev;
+}
+
+```
 ## The stack
 A **LIFO** data structure.
 Stuff we need:

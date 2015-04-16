@@ -1,12 +1,12 @@
 Hashing
 =============
 * All operations are basically O(1).
-* A hash table is basically a vector/array with buckets.
+* A hash table is basically a vector/array with buckets allocated at the beginning.
 * A hash function takes a key and returns a bucket index (eg. sum ASCII values of a string, mod by # of buckets).
 
 We've got to watch out for collisions - multiple keys with the same bucket index. 
 
-## Closed Hashing
+## Closed Hashing (Probing)
 Three states: Empty, Zombie, Active.
 
 * For insert, if the bucket index given is full, go to the next bucket until an empty or zombie bucket is found. 
