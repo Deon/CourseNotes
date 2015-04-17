@@ -6,6 +6,19 @@ Misc. Notes
 
 **Test Driven Development (TDD)** - Create the test cases first, then code to pass those tests.
 
+## UML Diagrams
+
+**Access Rights**
+* "+" - Public
+* "#" - Protected
+* "-" - Private
+
+**Style**
+
+* Member variables first, then methods.
+* Don't declare inherited vars in child.
+* Usually leave constructors and destructors out
+
 ## Adapters and Design Principles
 ### Adapters / Wrappers
 * Usually you have a data structure with what you want, but the API isn't exactly what you want.

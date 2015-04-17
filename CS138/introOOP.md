@@ -87,6 +87,7 @@ Keep constructors somewhat consistent as well.
 * Declaring a method as `const` is a promise that you won't change anything using that method. It also means that you can only call other `const` methods within it.
 * Declaring a variable as `const` says that after the first time it's set, it won't change.
     * `const` variables need to be declared first. 
+    * Must be given its value by an initializer. 
 * There only exists one instance of `static` members across all instances of that class.
     * Usually used to keep track of the number of instances.
 * `static` methods can only access `static` variables. 
@@ -100,6 +101,7 @@ Keep constructors somewhat consistent as well.
 * STL containers give default values based on the element type... so if you want consistency, define one yourself. 
 * Use initializers whenever possible. 
     * Any non-initialized parts have their default constructors called, then stuff in the constructor body is processed. 
+    * Variables are initialized in their order according to the **class definition**, not the initializer. 
 
 Example constructor with multiple parts to initialize
 ```C++
