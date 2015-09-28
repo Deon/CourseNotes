@@ -1,0 +1,64 @@
+1) p | !q, p => r, !q => r |= r (HOLDS) 
+
+2) !p => (!q | r), p => r, !r |= q (DOES NOT HOLD)
+
+Finding a counter example for logical implication:
+q = F, premises have to be T.
+r = F (!r = T)
+p = F
+q = F (!q | r) has to be false as !p = T (consistent with above). Okay.
+
+Concludes in:
+
+T => T, F => F, T |= F
+Does not hold. 
+
+
+TRANSFORMATIONAL PROOFS
+
+1) ==========================
+!(p | q) | (!p & q) <-> !p
+1) !(p | q) | (!p & q)
+2) (!p & !q) |  (!p & q) by dm
+3) !p & (q | !q) by lem
+4) !p & true by contr
+5) !p by simp1
+
+2) ==========================
+p & (p => q) <-> p & q
+1) p & (p => q) 
+2) p & (!p | q) by impl
+3) (p & !p) | (p & q)  by distr
+4) false | (p & q) by contr
+5) p & q by simp1 
+
+3) ==========================
+p <=> q <-> (p & q) <=> (p | q)
+
+1) (p & q) <=> (p | q) 
+2) ((p & q) => (p | q)) & ((p | q) => (p & q)) by eqvl
+3) (!(p & q) | (p | q)) & (!(p | q) | (p & q)) by impl * 2
+4) ((!p | !q) | (p | q)) & ((!p & !q) | (p & q)) by dm * 2
+5) (!p | p | !q | q) & ((!p & !q) | (p & q)) by comm
+6) (true | true) & ((!p & !q) | (p & q)) by lem * 2
+7) true & ((!p & !q) | (p & q)) by idemp
+8) (!p & !q) | (p & q) by simp1
+9) ((!p & !q) | p) & ((!p & !q) | q) by distr * 2
+10) ((!p | p) & (!q | p)) & ((!p | q) & (!q | q)) by distr * 2
+11) (true & (!q | p)) & ((!p | q) & true) by lem * 2
+12) (!q | p) & (!p | q) by simp1 * 2 
+13) (q => p) & (p => q) by impl * 2
+14) (p <=> q) by eqvl
+
+4) ===========================
+(b & !d) | !(c | !d) to CNF (tips: use dm, distr to convert between and move) 
+
+1) (b & !d) | !(c | !d)
+2) (b & !d) | (!c & !!d) by dm
+3) (b & !d) | (!c & d) by neg
+4) ((b & !d) | !c) & ((b & !d) | d) by distr * 2
+5) ((b | !c) & (!d | !c)) & ((d | b) & (d | !d)) by distr * 2
+6) (b | !c) & (!d | !c) & (d | b) & true by lem
+7) (b | !c) & (!d | !c) & (d | b) by simp1
+
+
