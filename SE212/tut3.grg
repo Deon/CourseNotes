@@ -1,0 +1,147 @@
+1. ---------------------------
+p => (q => r) |- (p ^ q) => r
+
+1) p => (q => r) premise
+2) assume (p ^ q) {
+	3) p from and_e on 2
+	4) q from and_e on 2
+	5) q => r by imp_e on 1, 2
+	6) r by imp_e on 4, 5
+}
+7) (p ^ q) => r by imp_i on 2-6
+
+2. ---------------------------
+|- p <=> !!p
+
+1) assume p {
+	2) !!p by not_not_i on 1
+} 
+3) p => !!p by imp_i on 1-2
+4) assume !!p {
+	5) p by not_not_e on 4
+}
+6) !!p => p by imp_i on 4-5
+7) p <=> !!p on iff_i on 3, 6
+
+3. ----------------------------
+
+!a ^ !b |- !(a | b)
+
+1) !a ^ !b
+2) !a by and_e on 1
+3) !b by and_e on 1
+4) disprove (a | b) {
+	5) b by or_e on 2, 4
+	6) false by not_e on 3, 5
+}
+7) !(a | b) by raa on 4-6 
+
+4. ----------------------------
+
+!(p & q) |- !p | !q
+
+1) !(p & q) premise
+2) p | !p by lem
+3) case p {
+	4) q | !q by lem
+	5) case q {
+		6) p & q by and_i on 3, 5
+		7) !p | !q by not_e on 1, 6
+	}
+	8) case !q {
+		9) !p | !q by or_i on 8
+	}
+	10) !p | !q by cases on 4, 5-7, 8-9
+}
+11) case !p {
+	12) !p | !q by or_i 
+}
+13) !p | !q by cases on 2, 3-10, 11-12
+
+5. ----------------------------
+
+p => r, q => s |- (p => (r | s)) & (q => (r | s))
+1) p => r
+2) q => s
+3) assume p {
+	4) r by imp_e on 1, 3
+	5) r | s by or_i on 4
+}
+6) p => (r | s) by imp_i on 3-5
+7) assume q {
+	8) s by imp_e on 2, 7
+	9) r | s by or_i on 8
+}
+10) q => (r | s) by imp_i on 7-9
+11) p => (r | s) & q => (r | s) by and_i on 6, 10
+
+
+6. ----------------------------
+|- p <=> !!p
+
+1) ! (p <=> !!p)
+by not_iff_br
+{
+	2) p & !!!p
+	by and_nb on 2
+	4) p
+	5) !!!p
+	by not_not_nb on 5
+	6) !p
+	closed on 4, 6
+}
+{
+	3) !p & !!p 
+	by and_nb on 3
+	7) !p
+	8) !!p
+	by not_not_nb on 8
+	9) p
+	closed on 7, 9
+}
+
+7. -----------------------------
+p => r, q => s |- (p => (r | s)) & (q => (r | s))
+
+1) p => r
+2) q => s
+3) ! ((p => (r | s)) & (q => (r | s)))
+by not_and_br 
+{
+	4) !(p => (r | s))
+	by not_imp_nb on 4
+	6) p
+	7) !(r | s)
+	by not_or_nb on 7
+	8) !r
+	9) !s
+	by imp_br on 1
+	{
+		10) !p 
+		closed on 6, 10	
+	}
+	{
+		11) r
+		closed on 8, 11
+	}
+}
+{
+	5) !(q => (r | s))
+	by not_imp_nb on 5
+	12) q
+	13) !(r | s)
+	by not_or_nb on 13
+	14) !r
+	15)	!s
+	by imp_br on 2
+	{
+		16) !q
+		closed on 12, 16
+	} 
+	{
+		17) s
+		closed on 15, 17
+	}
+}
+ 
+
