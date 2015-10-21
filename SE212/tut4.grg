@@ -1,0 +1,79 @@
+1)
+clever(x): x is clever
+hardworking(x): x is hardworking
+student(x): x is a student
+lazy(x): x is lazy
+
+1a) No one can be clever without being hardworking.
+! exists x . (clever(x) & hardworking(x))
+
+1b) Clever students work hard.
+forall x . student(x) ^ clever(x) => hardworking(x) 
+
+1c) Those do not work hard are lazy.
+forall x . !hardworking(x) => lazy(x)
+
+2) 
+person(x): x is a person
+inClass(x): x is in the class
+taller(x, y): x is taller than y 
+speaking(x): x is speaking
+2a) There is a person in the class who is taller than everyone else in the class.
+
+exists x . forall y. person(x) & inClass(x) & person(y) & inClass(y) & x != y => taller(x, y)
+
+2b) If someone in the class is speaking, then no one else in the class is speaking. 
+
+exists x . person(x) & inClass(x) & speaking(x) => forall y. y != x & person(y) & inClass(y) => !speaking(y)
+
+3) 
+distance(x, y) - distance between x, y, in miles.
+in(x, y) - x is in y. 
+supplies (x, y) - x supplies y
+3a) London is 30 miles away from Reading.
+distance(London, Reading) == 30
+
+3b) The store that is furthest away from London is in Edinburgh.
+
+exists x . store(x) & in(x, Edinburgh) & forall y . store(y) => distance(x, London) > distance(y, London) 
+
+3c) Stores supply other stores only if they are within 30 miles of each other. 
+forall x, y . store(x) & store(y) & supplies(x, y) => distance(x,y) < 30
+
+
+4) forall y : M . exists x : N . p(g(x), y) |= exists z : M . p(z, z)
+
+T |= F
+
+Counterexample:
+M = {m1, m2}
+N = {n1, n2}
+
+Syntax   | Meaning
+============================
+g(.)     |	G(n1):= m1		g returns type M, as p takes two M parameters (as you can see from p(z, z))
+         |  G(n2):= m2
+============================
+p(., .)  | P(m1, m1):= F
+         | P(m1, m2):= T
+         | P(m2, m1):= T
+         | P(m2, m2):= F
+
+Prove semantically.
+
+5) 
+forall x . m(x) => exists y. l(x, y), exists x . m(x) & g(x) 
+|- 
+exists x . (exists y . l(x, y)) & g(x)
+
+1) forall x . m(x) => exists y . l(x, y) premise
+2) exists x . m(x) & g(x) premise
+3) for some xu m(xu) & g(xu) {
+	4) m(xu) by and_e on 3
+	5) g(xu) by and_e on 3
+	6) m(xu) => exists y. l(xu, y) by forall_e on 1
+	7) exists y . l(xu, y) by imp_e on 4, 6
+	8) exists y . l(xu, y) & g(xu) by and_i on 5, 7
+	9) exists x . (exists y . l(x, y)) & g(x) by exists_i on 8 
+}
+10) exists x . (exists y . l(x, y)) & g(x) by exists_e on 3-9	
