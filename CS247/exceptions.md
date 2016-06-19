@@ -103,6 +103,6 @@ public:
     SomeObj();
     doSomething() noexcept;
 }
-
+```
 
 Do not use exceptions for programming errors - it will remove elements from the call stack. Use assertions to preserve program state for debugging.
