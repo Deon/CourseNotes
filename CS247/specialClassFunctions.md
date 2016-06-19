@@ -89,6 +89,32 @@ b = std::move(a); // This is assignment, as b already exists
 * Member objects: member move assignment
 * Inherited members: base class move assignment
 
+## Copy - Swap idiom
+We use this for safety during assignment, so if something fails, the original value isn't screwed.
+
+1. Create a new object using the copy constructor
+2. Swap the values of pointer members 
+3. Destructor destroys the old members
+
+
+From class:
+
+```cpp
+MyClass& MyClass::operator= (const MyClass& m) {
+    Base::operator=(m);
+    simple_ = m.simple_; // 1. (Re)use member's operator=
+    comp_ = m.comp_;
+
+    MyClass copy{m}; // 2. MyClass copy constructor
+    C* temp;
+
+    temp = copy.ptr_; // 3. swap ptr data members
+    copy.ptr_ = ptr_;
+    ptr_ = temp;
+    
+    return *this;
+}
+```
 ## Copies (Shallow/Deep)
 
 ### Shallow Copy
